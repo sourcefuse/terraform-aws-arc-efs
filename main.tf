@@ -2,13 +2,7 @@
 ## Local Values
 ################################################################################
 locals {
-  name = "${var.namespace}-${var.environment}-${var.name}"
-
-  common_tags = merge(var.tags, {
-    Name        = local.name
-    Namespace   = var.namespace
-    Environment = var.environment
-  })
+  name = var.name
 
   # Mount target security group name
   mount_target_sg_name = var.mount_target_security_group_name != null ? var.mount_target_security_group_name : "${local.name}-mt"
@@ -42,7 +36,7 @@ resource "aws_efs_file_system" "this" {
     }
   }
 
-  tags = local.common_tags
+  tags = var.tags
 }
 
 ################################################################################
@@ -81,7 +75,7 @@ resource "aws_security_group" "mount_target" {
   description = var.mount_target_security_group_description
   vpc_id      = var.mount_target_security_group_vpc_id
 
-  tags = merge(local.common_tags, {
+  tags = merge(var.tags, {
     Name = local.mount_target_sg_name
   })
 
@@ -181,7 +175,7 @@ resource "aws_efs_access_point" "this" {
     }
   }
 
-  tags = merge(local.common_tags, each.value.tags, {
+  tags = merge(var.tags, each.value.tags, {
     Name = "${local.name}-ap-${each.key}"
   })
 }

@@ -1,16 +1,6 @@
 ################################################################################
 ## General Variables
 ################################################################################
-variable "namespace" {
-  type        = string
-  description = "Namespace for the resources."
-}
-
-variable "environment" {
-  type        = string
-  description = "ID element. Usually used for region e.g. 'uw2', 'us-west-2', OR role 'prod', 'staging', 'dev', 'UAT'"
-}
-
 variable "name" {
   type        = string
   description = "Name of the EFS file system"

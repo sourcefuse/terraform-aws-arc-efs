@@ -15,9 +15,3 @@ terraform {
 provider "aws" {
   region = var.region
 }
-
-#Provider for replication destination region
-provider "aws" {
-  alias  = "replica"
-  region = var.replication_region
-}

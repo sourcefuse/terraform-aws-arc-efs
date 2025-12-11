@@ -102,7 +102,9 @@ This example creates:
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.25.0 |
 
 ## Modules
 
@@ -112,21 +114,21 @@ No providers.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [aws_subnets.private](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnets) | data source |
+| [aws_vpc.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_access_points"></a> [access\_points](#input\_access\_points) | EFS access points configuration | <pre>map(object({<br/>    path = string<br/>    creation_info = object({<br/>      owner_gid   = number<br/>      owner_uid   = number<br/>      permissions = string<br/>    })<br/>    posix_user = object({<br/>      gid            = number<br/>      uid            = number<br/>      secondary_gids = list(number)<br/>    })<br/>    tags = map(string)<br/>  }))</pre> | <pre>{<br/>  "db_backup": {<br/>    "creation_info": {<br/>      "owner_gid": 1002,<br/>      "owner_uid": 1002,<br/>      "permissions": "750"<br/>    },<br/>    "path": "/database/backups",<br/>    "posix_user": {<br/>      "gid": 1002,<br/>      "secondary_gids": [],<br/>      "uid": 1002<br/>    },<br/>    "tags": {<br/>      "Application": "Database",<br/>      "Purpose": "Backup"<br/>    }<br/>  },<br/>  "shared": {<br/>    "creation_info": {<br/>      "owner_gid": 1000,<br/>      "owner_uid": 1000,<br/>      "permissions": "777"<br/>    },<br/>    "path": "/shared",<br/>    "posix_user": {<br/>      "gid": 1000,<br/>      "secondary_gids": [],<br/>      "uid": 1000<br/>    },<br/>    "tags": {<br/>      "Purpose": "SharedStorage"<br/>    }<br/>  },<br/>  "web_app": {<br/>    "creation_info": {<br/>      "owner_gid": 1001,<br/>      "owner_uid": 1001,<br/>      "permissions": "755"<br/>    },<br/>    "path": "/web",<br/>    "posix_user": {<br/>      "gid": 1001,<br/>      "secondary_gids": [],<br/>      "uid": 1001<br/>    },<br/>    "tags": {<br/>      "Application": "WebApp"<br/>    }<br/>  }<br/>}</pre> | no |
-| <a name="input_allowed_cidr_blocks"></a> [allowed\_cidr\_blocks](#input\_allowed\_cidr\_blocks) | CIDR blocks allowed to access EFS | `list(string)` | <pre>[<br/>  "10.12.0.0/16"<br/>]</pre> | no |
 | <a name="input_create_mount_target_security_group"></a> [create\_mount\_target\_security\_group](#input\_create\_mount\_target\_security\_group) | Create security group for mount targets | `bool` | `true` | no |
 | <a name="input_enable_backup_policy"></a> [enable\_backup\_policy](#input\_enable\_backup\_policy) | Whether to enable EFS backup policy | `bool` | `true` | no |
 | <a name="input_encrypted"></a> [encrypted](#input\_encrypted) | Whether to encrypt the EFS file system | `bool` | `true` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Environment identifier (e.g., dev, staging, prod) | `string` | `"prod"` | no |
+| <a name="input_environment"></a> [environment](#input\_environment) | Environment identifier (e.g., dev, staging, prod) | `string` | `"poc"` | no |
 | <a name="input_lifecycle_policy"></a> [lifecycle\_policy](#input\_lifecycle\_policy) | EFS lifecycle policy | <pre>object({<br/>    transition_to_ia                    = string<br/>    transition_to_primary_storage_class = string<br/>  })</pre> | <pre>{<br/>  "transition_to_ia": "AFTER_30_DAYS",<br/>  "transition_to_primary_storage_class": "AFTER_1_ACCESS"<br/>}</pre> | no |
-| <a name="input_mount_target_security_group_vpc_id"></a> [mount\_target\_security\_group\_vpc\_id](#input\_mount\_target\_security\_group\_vpc\_id) | VPC ID for the security group | `string` | `"vpc-0e6c09980580ecbf6"` | no |
-| <a name="input_mount_targets"></a> [mount\_targets](#input\_mount\_targets) | Mount targets configuration | <pre>map(object({<br/>    subnet_id = string<br/>  }))</pre> | <pre>{<br/>  "us-east-1a": {<br/>    "subnet_id": "subnet-066d0c78479b72e77"<br/>  },<br/>  "us-east-1b": {<br/>    "subnet_id": "subnet-0c55ffb1f4a8bd7c2"<br/>  }<br/>}</pre> | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the EFS file system | `string` | `"access-points-example"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace for the resources | `string` | `"arc"` | no |
 | <a name="input_performance_mode"></a> [performance\_mode](#input\_performance\_mode) | EFS performance mode | `string` | `"generalPurpose"` | no |

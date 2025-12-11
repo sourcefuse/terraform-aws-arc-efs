@@ -10,7 +10,7 @@ variable "namespace" {
 variable "environment" {
   type        = string
   description = "Environment identifier (e.g., dev, staging, prod)"
-  default     = "prod"
+  default     = "poc"
 }
 
 variable "name" {
@@ -23,12 +23,6 @@ variable "region" {
   type        = string
   description = "AWS region"
   default     = "us-east-1"
-}
-
-variable "replication_region" {
-  type        = string
-  description = "aws region for replication"
-  default     = "us-east-2"
 }
 
 variable "performance_mode" {
@@ -61,33 +55,10 @@ variable "kms_key_id" {
   default     = null
 }
 
-variable "mount_targets" {
-  type = map(object({
-    subnet_id = string
-  }))
-  description = "Mount targets configuration"
-  default = {
-    us-east-1a = { subnet_id = "subnet-066d0c78479b72e77" }
-    us-east-1b = { subnet_id = "subnet-0c55ffb1f4a8bd7c2" }
-  }
-}
-
 variable "create_mount_target_security_group" {
   type        = bool
   description = "Create security group for mount targets"
   default     = true
-}
-
-variable "mount_target_security_group_vpc_id" {
-  type        = string
-  description = "VPC ID for the security group"
-  default     = "vpc-0e6c09980580ecbf6"
-}
-
-variable "allowed_cidr_blocks" {
-  type        = list(string)
-  description = "CIDR blocks allowed to access EFS"
-  default     = ["10.12.0.0/16"]
 }
 
 variable "allowed_security_group_ids" {

@@ -107,7 +107,9 @@ This example creates:
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.25.0 |
 
 ## Modules
 
@@ -117,30 +119,29 @@ No providers.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [aws_subnets.private](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnets) | data source |
+| [aws_vpc.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_security_group_rules"></a> [additional\_security\_group\_rules](#input\_additional\_security\_group\_rules) | Additional security group rules | <pre>map(object({<br/>    type        = string<br/>    from_port   = number<br/>    to_port     = number<br/>    protocol    = string<br/>    cidr_blocks = list(string)<br/>    description = string<br/>  }))</pre> | <pre>{<br/>  "management_access": {<br/>    "cidr_blocks": [<br/>      "10.0.100.0/24"<br/>    ],<br/>    "description": "NFS access from management subnet",<br/>    "from_port": 2049,<br/>    "protocol": "tcp",<br/>    "to_port": 2049,<br/>    "type": "ingress"<br/>  }<br/>}</pre> | no |
-| <a name="input_allowed_cidr_blocks"></a> [allowed\_cidr\_blocks](#input\_allowed\_cidr\_blocks) | CIDR blocks allowed to access EFS | `list(string)` | <pre>[<br/>  "10.12.0.0/16"<br/>]</pre> | no |
 | <a name="input_allowed_security_group_ids"></a> [allowed\_security\_group\_ids](#input\_allowed\_security\_group\_ids) | Security group IDs allowed to access EFS | `list(string)` | `[]` | no |
 | <a name="input_create_mount_target_security_group"></a> [create\_mount\_target\_security\_group](#input\_create\_mount\_target\_security\_group) | Create security group for mount targets | `bool` | `true` | no |
 | <a name="input_enable_backup_policy"></a> [enable\_backup\_policy](#input\_enable\_backup\_policy) | Whether to enable EFS backup policy | `bool` | `true` | no |
 | <a name="input_encrypted"></a> [encrypted](#input\_encrypted) | Whether to encrypt the EFS file system | `bool` | `true` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | Environment identifier (e.g., dev, staging, prod) | `string` | `"prod"` | no |
+| <a name="input_environment"></a> [environment](#input\_environment) | Environment identifier (e.g., dev, staging, prod) | `string` | `"poc"` | no |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | KMS key ID for encryption | `string` | `null` | no |
 | <a name="input_lifecycle_policy"></a> [lifecycle\_policy](#input\_lifecycle\_policy) | EFS lifecycle policy | <pre>object({<br/>    transition_to_ia = string<br/>  })</pre> | <pre>{<br/>  "transition_to_ia": "AFTER_7_DAYS"<br/>}</pre> | no |
-| <a name="input_mount_target_security_group_vpc_id"></a> [mount\_target\_security\_group\_vpc\_id](#input\_mount\_target\_security\_group\_vpc\_id) | VPC ID for the security group | `string` | `"vpc-0e6c09980580ecbf6"` | no |
-| <a name="input_mount_targets"></a> [mount\_targets](#input\_mount\_targets) | Mount targets configuration | <pre>map(object({<br/>    subnet_id = string<br/>  }))</pre> | <pre>{<br/>  "us-east-1a": {<br/>    "subnet_id": "subnet-066d0c78479b72e77"<br/>  },<br/>  "us-east-1b": {<br/>    "subnet_id": "subnet-0c55ffb1f4a8bd7c2"<br/>  }<br/>}</pre> | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the EFS file system | `string` | `"replication-example"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace for the resources | `string` | `"arc"` | no |
 | <a name="input_performance_mode"></a> [performance\_mode](#input\_performance\_mode) | EFS performance mode | `string` | `"maxIO"` | no |
 | <a name="input_provisioned_throughput_mibps"></a> [provisioned\_throughput\_mibps](#input\_provisioned\_throughput\_mibps) | Provisioned throughput in MiBps | `number` | `500` | no |
 | <a name="input_region"></a> [region](#input\_region) | AWS region | `string` | `"us-east-1"` | no |
 | <a name="input_replication_configuration"></a> [replication\_configuration](#input\_replication\_configuration) | Cross-region replication configuration | <pre>object({<br/>    destination = object({<br/>      region     = string<br/>      kms_key_id = string<br/>    })<br/>  })</pre> | <pre>{<br/>  "destination": {<br/>    "kms_key_id": null,<br/>    "region": "us-east-2"<br/>  }<br/>}</pre> | no |
-| <a name="input_replication_region"></a> [replication\_region](#input\_replication\_region) | aws region for replication | `string` | `"us-east-2"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to apply to all resources | `map(string)` | <pre>{<br/>  "BackupStrategy": "CrossRegion",<br/>  "Compliance": "Required",<br/>  "Environment": "prod",<br/>  "Example": "Replication",<br/>  "Namespace": "arc",<br/>  "Project": "ARC"<br/>}</pre> | no |
 | <a name="input_throughput_mode"></a> [throughput\_mode](#input\_throughput\_mode) | EFS throughput mode | `string` | `"provisioned"` | no |
 

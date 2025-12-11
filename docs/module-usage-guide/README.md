@@ -25,6 +25,23 @@ Before using this module, ensure you have the following:
 To use the module in your Terraform configuration, include the following source block:
 
 ```hcl
+# Data sources for VPC resources
+data "aws_vpc" "default" {
+  default = true
+}
+
+data "aws_subnets" "private" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default.id]
+  }
+
+  filter {
+    name   = "map-public-ip-on-launch"
+    values = ["false"]
+  }
+}
+
 module "arc-efs" {
   source  = "sourcefuse/arc-efs/aws"
   version = "1.0.0"
@@ -34,19 +51,15 @@ module "arc-efs" {
   environment = "dev"
   name        = "shared-storage"
 
-  # Mount targets configuration
+  # Mount targets configuration using data sources
   mount_targets = {
-    "us-east-1a" = {
-      subnet_id = "subnet-12345678"
-    }
-    "us-east-1b" = {
-      subnet_id = "subnet-87654321"
-    }
+    "us-east-1a" = { subnet_id = data.aws_subnets.private.ids[0] }
+    "us-east-1b" = { subnet_id = data.aws_subnets.private.ids[1] }
   }
 
-  # Security group configuration
-  mount_target_security_group_vpc_id = "vpc-12345678"
-  allowed_cidr_blocks                = ["10.0.0.0/16"]
+  # Security group configuration using data sources
+  mount_target_security_group_vpc_id = data.aws_vpc.default.id
+  allowed_cidr_blocks                = [data.aws_vpc.default.cidr_block]
 }
 ```
 
@@ -122,7 +135,9 @@ This example will create:
 ### Tips and Recommendations
 
 - The module focuses on provisioning a secure, scalable EFS file system. The convention-based approach enables downstream services to easily mount the EFS file system. Adjust the configuration parameters as needed for your specific use case.
+- Use data sources to dynamically fetch VPC and subnet information instead of hardcoding values for better reusability
 - Use multiple mount targets across different AZs for high availability
+- Prefer private subnets for EFS mount targets for better security
 - Consider using access points for applications requiring different permissions or directory structures
 - Enable encryption at rest and in transit for sensitive data
 - Configure appropriate security group rules to limit access to your EFS file system

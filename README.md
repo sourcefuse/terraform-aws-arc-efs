@@ -174,7 +174,6 @@ No modules.
 | <a name="input_creation_token"></a> [creation\_token](#input\_creation\_token) | A unique name (a maximum of 64 characters are allowed) used as reference when creating the EFS | `string` | `null` | no |
 | <a name="input_enable_backup_policy"></a> [enable\_backup\_policy](#input\_enable\_backup\_policy) | A boolean that indicates whether or not to apply Backup Policy to the file system | `bool` | `true` | no |
 | <a name="input_encrypted"></a> [encrypted](#input\_encrypted) | If true, the disk will be encrypted | `bool` | `true` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | ID element. Usually used for region e.g. 'uw2', 'us-west-2', OR role 'prod', 'staging', 'dev', 'UAT' | `string` | n/a | yes |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | The ARN for the KMS encryption key. When specifying kms\_key\_id, encrypted needs to be set to true | `string` | `null` | no |
 | <a name="input_lifecycle_policy"></a> [lifecycle\_policy](#input\_lifecycle\_policy) | A file system lifecycle policy object | <pre>object({<br/>    transition_to_ia                    = optional(string)<br/>    transition_to_primary_storage_class = optional(string)<br/>  })</pre> | `{}` | no |
 | <a name="input_mount_target_security_group_description"></a> [mount\_target\_security\_group\_description](#input\_mount\_target\_security\_group\_description) | Description of the mount target security group | `string` | `"EFS mount target security group"` | no |
@@ -182,7 +181,6 @@ No modules.
 | <a name="input_mount_target_security_group_vpc_id"></a> [mount\_target\_security\_group\_vpc\_id](#input\_mount\_target\_security\_group\_vpc\_id) | ID of the VPC where mount target security group will be created | `string` | `null` | no |
 | <a name="input_mount_targets"></a> [mount\_targets](#input\_mount\_targets) | A map of mount target configurations where key is the AZ name | <pre>map(object({<br/>    subnet_id       = string<br/>    security_groups = optional(list(string), [])<br/>  }))</pre> | `{}` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the EFS file system | `string` | n/a | yes |
-| <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace for the resources. | `string` | n/a | yes |
 | <a name="input_performance_mode"></a> [performance\_mode](#input\_performance\_mode) | The file system performance mode. Can be either `generalPurpose` or `maxIO` | `string` | `"generalPurpose"` | no |
 | <a name="input_policy"></a> [policy](#input\_policy) | A valid JSON formatted policy for the EFS file system | `string` | `null` | no |
 | <a name="input_provisioned_throughput_in_mibps"></a> [provisioned\_throughput\_in\_mibps](#input\_provisioned\_throughput\_in\_mibps) | The throughput, measured in MiB/s, that you want to provision for the file system. Only applicable with throughput\_mode set to provisioned | `number` | `null` | no |
