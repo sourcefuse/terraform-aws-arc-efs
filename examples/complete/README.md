@@ -123,7 +123,7 @@ This is the most comprehensive example that showcases:
    terraform apply
    ```
 
-<!-- BEGIN_TF_DOCS -->
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
@@ -135,7 +135,7 @@ This is the most comprehensive example that showcases:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.25.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.26.0 |
 
 ## Modules
 
@@ -198,7 +198,7 @@ This is the most comprehensive example that showcases:
 | <a name="output_replication_destination_file_system_id"></a> [replication\_destination\_file\_system\_id](#output\_replication\_destination\_file\_system\_id) | The file system ID of the replica |
 | <a name="output_security_group_arn"></a> [security\_group\_arn](#output\_security\_group\_arn) | Security group ARN for mount targets |
 | <a name="output_security_group_id"></a> [security\_group\_id](#output\_security\_group\_id) | Security group ID for mount targets |
-<!-- END_TF_DOCS -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ### Advanced Mounting Examples
 

@@ -97,7 +97,7 @@ This example creates:
    terraform apply
    ```
 
-<!-- BEGIN_TF_DOCS -->
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
@@ -156,7 +156,7 @@ This example creates:
 | <a name="output_replication_configuration_id"></a> [replication\_configuration\_id](#output\_replication\_configuration\_id) | ID of the replication configuration |
 | <a name="output_replication_destination_file_system_id"></a> [replication\_destination\_file\_system\_id](#output\_replication\_destination\_file\_system\_id) | The file system ID of the replica |
 | <a name="output_security_group_id"></a> [security\_group\_id](#output\_security\_group\_id) | Security group ID for mount targets |
-<!-- END_TF_DOCS -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ### Mounting the File System
 

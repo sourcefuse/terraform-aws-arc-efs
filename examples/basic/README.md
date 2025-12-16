@@ -64,7 +64,7 @@ This example creates:
    terraform apply
    ```
 
-<!-- BEGIN_TF_DOCS -->
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
@@ -114,7 +114,7 @@ This example creates:
 | <a name="output_efs_id"></a> [efs\_id](#output\_efs\_id) | ID of the EFS file system |
 | <a name="output_mount_targets"></a> [mount\_targets](#output\_mount\_targets) | Mount targets information |
 | <a name="output_security_group_id"></a> [security\_group\_id](#output\_security\_group\_id) | Security group ID for mount targets |
-<!-- END_TF_DOCS -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ### Connecting to EFS
 

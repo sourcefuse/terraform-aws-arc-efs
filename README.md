@@ -127,7 +127,7 @@ This module includes several comprehensive examples:
 - **[With Replication](./examples/with-replication/)** - Cross-region replication for disaster recovery
 - **[Complete](./examples/complete/)** - All features including encryption, lifecycle policies, and access points
 
-<!-- BEGIN_TF_DOCS -->
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
@@ -216,7 +216,7 @@ No modules.
 | <a name="output_security_group_arn"></a> [security\_group\_arn](#output\_security\_group\_arn) | ARN of the mount target security group |
 | <a name="output_security_group_id"></a> [security\_group\_id](#output\_security\_group\_id) | ID of the mount target security group |
 | <a name="output_security_group_name"></a> [security\_group\_name](#output\_security\_group\_name) | Name of the mount target security group |
-<!-- END_TF_DOCS -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Versioning  
 This project uses a `.version` file at the root of the repo which the pipeline reads from and does a git tag.  

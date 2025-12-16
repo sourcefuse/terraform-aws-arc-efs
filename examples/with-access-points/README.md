@@ -92,7 +92,7 @@ This example creates:
    terraform apply
    ```
 
-<!-- BEGIN_TF_DOCS -->
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
@@ -145,7 +145,7 @@ This example creates:
 | <a name="output_efs_dns_name"></a> [efs\_dns\_name](#output\_efs\_dns\_name) | DNS name of the EFS file system |
 | <a name="output_efs_id"></a> [efs\_id](#output\_efs\_id) | ID of the EFS file system |
 | <a name="output_mount_targets"></a> [mount\_targets](#output\_mount\_targets) | Mount targets information |
-<!-- END_TF_DOCS -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ### Mounting Access Points
 
