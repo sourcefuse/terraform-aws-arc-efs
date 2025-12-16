@@ -27,6 +27,11 @@ module "efs" {
   allowed_security_group_ids         = var.allowed_security_group_ids
 
   # Cross-region replication for disaster recovery
+  # IMPORTANT: By AWS design, when replication is deleted (during 'terraform destroy'),
+  # the replicated destination EFS becomes a standalone, writeable file system rather
+  # than being automatically deleted. This is an AWS safety feature to prevent data loss,
+  # but it means the destination EFS continues to incur charges unless manually cleaned up.
+  # Check the destination region after destroy and delete the EFS if no longer needed.
   replication_configuration = var.replication_configuration
 
   # Lifecycle policy for cost optimization

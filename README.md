@@ -1,10 +1,9 @@
 ![Module Structure](./static/banner.png)
-# AWS Terraform Module
 # [terraform-aws-arc-efs](https://github.com/sourcefuse/terraform-aws-arc-efs)
 
 <a href="https://github.com/sourcefuse/terraform-aws-arc-efs/releases/latest"><img src="https://img.shields.io/github/release/sourcefuse/terraform-aws-arc-efs.svg?style=for-the-badge" alt="Latest Release"/></a> <a href="https://github.com/sourcefuse/terraform-aws-arc-efs/commits"><img src="https://img.shields.io/github/last-commit/sourcefuse/terraform-aws-arc-efs.svg?style=for-the-badge" alt="Last Updated"/></a> ![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=sourcefuse_terraform-aws-arc-efs&token=13a2f3a3c3de5bc9caf8060148954bd0979ceab4)](https://sonarcloud.io/summary/new_code?id=sourcefuse_terraform-aws-arc-efs)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=sourcefuse_terraform-aws-arc-efs&token=e5b55fbb24c5e180eaf820cb59295caa9a8e8e95)](https://sonarcloud.io/summary/new_code?id=sourcefuse_terraform-aws-arc-efs)
 
 ---
 
@@ -126,6 +125,33 @@ This module includes several comprehensive examples:
 - **[With Access Points](./examples/with-access-points/)** - Multiple access points for different applications
 - **[With Replication](./examples/with-replication/)** - Cross-region replication for disaster recovery
 - **[Complete](./examples/complete/)** - All features including encryption, lifecycle policies, and access points
+
+## Important Notes
+
+### EFS Replication Cleanup Behavior
+
+**Important**: When using cross-region EFS replication (`replication_configuration`), AWS creates a destination EFS file system in the target region. **By AWS design**, when replication is deleted (e.g., during `terraform destroy`), the destination EFS is preserved as a standalone, writeable file system rather than being automatically deleted.
+
+This is an **AWS safety feature** to prevent accidental data loss, but it means the destination EFS will continue to incur charges unless manually cleaned up.
+
+**To avoid ongoing charges:**
+1. After running `terraform destroy`, manually check the destination region (e.g., us-east-2)
+2. Delete any remaining EFS file systems that were created by replication if you no longer need them
+3. You can identify these by their creation time matching when you deployed your Terraform configuration
+
+**Example cleanup commands:**
+```bash
+# List EFS file systems in the replication region
+aws efs describe-file-systems --region us-east-2
+
+# Delete the destination EFS if no longer needed (replace with actual file system ID)
+aws efs delete-file-system --region us-east-2 --file-system-id fs-xxxxxxxxx
+```
+
+**Why this happens:**
+According to AWS documentation: *"Deleting a replication configuration ends the replication process. After a replication configuration is deleted, the destination file system becomes Writeable and its replication overwrite protection is re-enabled."*
+
+This behavior ensures that valuable data in the destination EFS is not accidentally lost when replication is stopped.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
