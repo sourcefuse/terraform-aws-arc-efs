@@ -7,8 +7,6 @@
 
 ---
 
-# terraform-aws-module-template
-
 ## Overview
 
 SourceFuse AWS Reference Architecture (ARC) Terraform module for managing AWS Elastic File System.
