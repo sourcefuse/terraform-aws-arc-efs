@@ -19,6 +19,9 @@
 
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=sourcefuse_terraform-aws-arc-efs&token=e5b55fbb24c5e180eaf820cb59295caa9a8e8e95)](https://sonarcloud.io/summary/new_code?id=sourcefuse_terraform-aws-arc-efs)
 
+> [!TIP]
+> 🤖 **New:** Use this module with AI assistants via the [ARC IaC MCP Server](https://github.com/sourcefuse/arc-iac-mcp) — search, scaffold, and security-scan ARC modules from natural language. [Quick setup ↓](#ai-assistant-integration-arc-iac-mcp)
+
 ## Overview
 
 Creates Amazon EFS file systems with mount targets, security groups, access points, and optional KMS encryption.
